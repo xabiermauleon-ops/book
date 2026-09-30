@@ -64,3 +64,10 @@ En `build/build.js`, arriba del todo:
 Si un texto tiene `es` pero no `en`, el generador publica el castellano y
 **avisa por consola** con la lista de lo que falta. No se rompe nada, pero
 queda registrado.
+
+## Versión de Node
+
+`.nvmrc` fija Node 22 para que Netlify compile siempre con la misma
+versión. Sin eso, Netlify usa la que tenga por defecto, y esa cambia con
+el tiempo: el sitio podría dejar de compilar un día sin que nadie haya
+tocado nada.
