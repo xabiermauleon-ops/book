@@ -13,11 +13,13 @@ const DESTINO = path.resolve(__dirname, '..', 'src');
   for (const [origen, salida] of [['cv.html', 'cv-xabier-mauleon.pdf'], ['en/cv.html', 'cv-xabier-mauleon-en.pdf']]) {
     await page.goto('file://' + path.join(ROOT, origen), { waitUntil: 'networkidle' });
     await page.emulateMedia({ media: 'print' });
+    /* Sin la opción margin: si se pasan márgenes aquí, Chromium ignora los
+       de @page y las dos capas se pisan. Todo el control vive en el CSS. */
     await page.pdf({
       path: path.join(DESTINO, salida),
       format: 'A4',
       printBackground: true,
-      margin: { top: '14mm', right: '14mm', bottom: '16mm', left: '14mm' }
+      preferCSSPageSize: true
     });
     console.log('  ' + salida);
   }

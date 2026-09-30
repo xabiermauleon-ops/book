@@ -598,7 +598,8 @@ function cvPage() {
 ${lista.map(c => `          <div class="cv-cifra"><b>${esc(C(c.n))}</b><span>${esc(C(c.t))}</span></div>`).join('\n')}
         </div>`;
 
-  const experiencia = V.experiencia.map(e => `      <article class="cv-puesto">
+  const experiencia = V.experiencia.map((e, i) => `      <article class="cv-puesto">
+        <span class="cv-num">${String(i + 1).padStart(2, '0')}</span>
         <div class="cv-puesto-cab">
           <h3>${esc(C(e.puesto))}</h3>
           <span class="cv-fechas">${esc(C(e.fechas))}</span>
@@ -637,8 +638,11 @@ ${nav('cv', false, otroIdiomaHref(false, 'cv'))}
 <main class="cv">
 
   <header class="cv-cabecera">
-    <h1>${esc(V.nombre)}</h1>
-    <p class="cv-rol">${esc(C(V.rol))}</p>
+    <div class="cv-portada">
+      <span class="cv-portada-eyebrow">${esc(C(V.rol))}</span>
+      <h1>${esc(V.nombre)}</h1>
+      <p class="cv-claim">${esc(C(V.claim))}</p>
+    </div>
     <p class="cv-contacto">
       <a href="tel:+34607323642">${esc(V.contacto.tel)}</a>
       <a href="mailto:${V.contacto.email}">${esc(V.contacto.email)}</a>
@@ -646,7 +650,6 @@ ${nav('cv', false, otroIdiomaHref(false, 'cv'))}
       <a href="https://www.linkedin.com/in/xabiermauleon" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="${SITIO}">${SITIO.replace('https://', '')} ↗</a>
     </p>
-    <p class="cv-claim">${esc(C(V.claim))}</p>
     <p class="cv-descarga"><a class="btn-solido" href="${r}${pdfCV()}" target="_blank" rel="noopener">${esc(T('Descargar en PDF ↓'))}</a></p>
   </header>
 
@@ -679,21 +682,19 @@ ${formacion}
     </div>
   </section>
 
-  <section class="cv-bloque">
+  <section class="cv-bloque cv-dos">
     <span class="label">${esc(C(V.certificadosLabel))}</span>
     <div class="cv-cuerpo">
 ${certificados}
     </div>
   </section>
 
-  <section class="cv-bloque">
-    <span class="label">${esc(C(V.idiomasLabel))}</span>
-    <div class="cv-cuerpo"><p>${V.idiomas.map(i => esc(C(i))).join(' &nbsp;·&nbsp; ')}</p></div>
-  </section>
-
-  <section class="cv-bloque">
-    <span class="label">${esc(C(V.deporteLabel))}</span>
-    <div class="cv-cuerpo"><p>${esc(C(V.deporte))}</p></div>
+  <section class="cv-bloque cv-cierre">
+    <span class="label">${esc(C(V.idiomasLabel))} · ${esc(C(V.deporteLabel))}</span>
+    <div class="cv-cuerpo">
+      <p class="cv-idiomas">${V.idiomas.map(i => esc(C(i))).join(' &nbsp;·&nbsp; ')}</p>
+      <p>${esc(C(V.deporte))}</p>
+    </div>
   </section>
 
 ${footer(false)}
