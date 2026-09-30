@@ -1,0 +1,8 @@
+# public/ lo reconstruye el generador en cada compilación, y Netlify lo
+# genera al desplegar. Versionarlo solo traería conflictos y ruido en los
+# diffs, y abriría la puerta a que lo publicado no case con lo versionado.
+public/
+
+node_modules/
+.DS_Store
+*.log
