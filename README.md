@@ -71,3 +71,23 @@ queda registrado.
 versión. Sin eso, Netlify usa la que tenga por defecto, y esa cambia con
 el tiempo: el sitio podría dejar de compilar un día sin que nadie haya
 tocado nada.
+
+## El CV
+
+El CV es **una página del sitio**, no un archivo aparte: `build/cv.js` guarda
+el contenido en los dos idiomas y se publica en `/cv.html` y `/en/cv.html`.
+
+El PDF sale de imprimir esa misma página:
+
+```
+node build/build.js
+node build/pdf.js
+```
+
+`build/pdf.js` usa Chromium y por eso **no se ejecuta en Netlify** —sus
+servidores no traen navegador—. Se lanza a mano y los dos PDF resultantes se
+guardan en `src/`, que sí está versionado.
+
+Regla práctica: si tocas `build/cv.js`, ejecuta los dos comandos y haz commit
+también de los PDF. Si solo ejecutas el primero, la página web queda al día y
+el PDF descargable no.

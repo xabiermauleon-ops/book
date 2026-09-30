@@ -1499,3 +1499,203 @@ html {
   border-color: var(--azul, #0015FF);
   color: #fff;
 }
+
+/* ---------- CV ----------
+   Misma retícula que el resto del sitio: etiqueta a la izquierda,
+   contenido a la derecha. Está pensada para leerse en pantalla y para
+   imprimirse en A4 sin retocar nada; las reglas de impresión van al final. */
+.cv { max-width: 1264px; margin-inline: auto; }
+
+.cv-cabecera {
+  padding-block: 8px 48px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 48px;
+}
+.cv-cabecera h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+.cv-rol {
+  margin: 0 0 20px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cv-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0 0 28px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.cv-contacto a { text-decoration: none; border-bottom: 1px solid var(--divider); }
+.cv-contacto a:hover { color: var(--azul); border-color: var(--azul); }
+.cv-claim {
+  margin: 0;
+  max-width: 622px;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.cv-bloque {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 56px;
+  padding-block: 36px;
+  border-top: 1px solid var(--divider);
+}
+.cv-bloque:first-of-type { border-top: none; padding-top: 0; }
+.cv-bloque .label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cv-cuerpo { max-width: 836px; }
+.cv-cuerpo p { margin: 0 0 12px; line-height: 1.6; }
+.cv-perfil { font-size: 17px; }
+
+.cv-puesto { margin-bottom: 30px; }
+.cv-puesto:last-of-type { margin-bottom: 14px; }
+.cv-puesto-cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cv-puesto h3 { margin: 0; font-size: 19px; letter-spacing: -0.01em; }
+.cv-fechas {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+.cv-org { margin: 2px 0 10px; font-size: 14px; color: var(--muted); }
+.cv-puesto ul { margin: 0; padding-left: 18px; }
+.cv-puesto li { margin-bottom: 7px; line-height: 1.55; }
+
+/* Las cifras van en cajas rectangulares, como los chips del book. */
+.cv-cifras { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.cv-cifra {
+  border: 1px solid var(--divider);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cv-cifra b { font-size: 16px; letter-spacing: -0.01em; }
+.cv-cifra span { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-2); }
+
+.cv-primera { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+.cv-skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 32px; }
+.cv-skill { display: flex; flex-direction: column; gap: 3px; }
+.cv-skill-t { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.cv-skill-v { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+
+.cv-item { margin-bottom: 16px; }
+.cv-item-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.cv-item-t { font-size: 16px; font-weight: 700; }
+.cv-item-org { display: block; font-size: 14px; color: var(--muted); margin-top: 1px; }
+.cv-item p { margin: 5px 0 0; font-size: 14px; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .cv-bloque { grid-template-columns: 1fr; gap: 14px; }
+  .cv-skills { grid-template-columns: 1fr; }
+}
+
+/* ---------- CV impreso ----------
+   El PDF se genera imprimiendo esta página, así que aquí se quita todo lo
+   que solo tiene sentido en pantalla —cabecera, menú, pie, degradado— y se
+   evita que un puesto se parta entre dos hojas. */
+@media print {
+  @page { size: A4; margin: 11mm 12mm 12mm; }
+
+  /* La animación de entrada deja los bloques a opacidad 0 hasta que entran
+     en pantalla. Al imprimir no hay desplazamiento que los revele, así que
+     ocupaban su sitio pero no se veían: páginas en blanco. Esto afecta a
+     todo el sitio, no solo al CV. */
+  [data-aparece],
+  .js-anim [data-aparece] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html, body {
+    background: #fff !important;
+    color: #000;
+    padding: 0 !important;
+    font-size: 8.6pt;
+    line-height: 1.34;
+  }
+  .site-header, .menu, .site-footer, .nav-toggle { display: none !important; }
+  .cv { max-width: none; }
+
+  .cv-cabecera { padding: 0 0 10px; margin-bottom: 12px; }
+  .cv-cabecera h1 { font-size: 19pt; margin-bottom: 4px; }
+  .cv-rol { font-size: 7.4pt; margin-bottom: 7px; letter-spacing: 0.07em; }
+  .cv-contacto { font-size: 8pt; gap: 3px 14px; margin-bottom: 9px; }
+  .cv-contacto a { border: none; color: #000; }
+  .cv-claim { font-size: 9.6pt; max-width: none; line-height: 1.35; }
+
+  /* En pantalla el bloque es un grid de dos columnas, pero un grid no se
+     fragmenta entre páginas: al no caber, la sección entera saltaba a la
+     hoja siguiente y dejaba la anterior medio vacía. En papel la etiqueta
+     flota a la izquierda, que sí permite que el texto siga en la página
+     siguiente. */
+  .cv-bloque { display: block; padding-block: 9px; overflow: visible; }
+  .cv-bloque .label { float: left; width: 92px; }
+  .cv-bloque .cv-cuerpo { margin-left: 108px; }
+  .cv-bloque::after { content: ""; display: table; clear: both; }
+  .cv-bloque .label { font-size: 7.4pt; }
+  .cv-cuerpo { max-width: none; }
+  .cv-cuerpo p { margin-bottom: 5px; line-height: 1.38; }
+  .cv-perfil { font-size: 8.8pt; }
+
+  .cv-puesto { margin-bottom: 11px; }
+  .cv-puesto h3 { font-size: 10pt; }
+  .cv-org { font-size: 8pt; margin: 1px 0 4px; }
+  .cv-fechas { font-size: 7.2pt; }
+  .cv-puesto ul { padding-left: 13px; }
+  .cv-puesto li { margin-bottom: 2.5px; line-height: 1.34; }
+
+  /* Las cifras dejan de ser cajas y pasan a una línea: en papel, seis
+     rectángulos por puesto se comen media hoja sin aportar nada. */
+  .cv-cifras { display: block; margin-top: 5px; font-size: 7.6pt; }
+  .cv-cifra {
+    display: inline;
+    border: none;
+    padding: 0;
+  }
+  .cv-cifra + .cv-cifra::before { content: " · "; color: #888; }
+  .cv-cifra b { font-size: 7.6pt; }
+  .cv-cifra span { font-size: 7.6pt; text-transform: none; letter-spacing: 0; color: #555; }
+  .cv-cifra b::after { content: " "; }
+
+  .cv-primera { font-size: 7.8pt; margin-top: 3px; }
+
+  .cv-skills { grid-template-columns: repeat(2, 1fr); gap: 7px 22px; }
+  .cv-skill-t { font-size: 7.4pt; }
+  .cv-skill-v { font-size: 8.2pt; line-height: 1.35; }
+
+  .cv-item { margin-bottom: 7px; }
+  .cv-item-t { font-size: 9pt; }
+  .cv-item-org { font-size: 8pt; }
+  .cv-item p { font-size: 8pt; margin-top: 2px; line-height: 1.34; }
+
+  /* Solo se protegen las unidades pequeñas. Poner esto en el bloque entero
+     empujaba toda la Experiencia a la página siguiente y dejaba la primera
+     medio vacía. */
+  .cv-puesto, .cv-item, .cv-skill { break-inside: avoid; page-break-inside: avoid; }
+  .cv-cabecera { break-after: avoid; }
+  a[href]::after { content: none !important; }
+}
+
+.cv-descarga { margin: 22px 0 0; }
+@media print { .cv-descarga { display: none; } }

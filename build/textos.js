@@ -184,5 +184,7 @@ module.exports = {
   'Full-wrap': 'Full-wrap',
 
   ' trabajos, cada uno contado por el problema que resolvía y por qué se tomó cada decisión — no solo por el resultado.':
-    ' projects, each told through the problem it solved and why each decision was taken — not just through the result.'
+    ' projects, each told through the problem it solved and why each decision was taken — not just through the result.',
+  'Ver el CV →': 'View the CV →',
+  'Descargar en PDF ↓': 'Download as PDF ↓'
 };

@@ -75,7 +75,7 @@ module.exports = {
       d('Por el camino pasé por el Vostok VII de Javier Cañada en Tramontana —ocho alumnos por edición— y di clase de diseño digital e interacción en el Vogue College of Fashion y en Nebrija durante cinco semestres.',
         'Along the way I went through Javier Cañada’s Vostok VII at Tramontana — eight students an edition — and taught digital and interaction design at the Vogue College of Fashion and at Nebrija for five semesters.')
     ],
-    perfilCV: d('Ver el CV (PDF)', 'View the CV (PDF)'),
+    perfilCV: d('Ver el CV', 'View the CV'),
     perfilTray: d('Trayectoria completa', 'Full background')
   },
 

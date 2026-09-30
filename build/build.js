@@ -62,15 +62,19 @@ function C(campo) {
 const RUTA = {
   es: { inicio: 'index.html', trabajo: 'trabajo.html', metodo: 'como-trabajo.html',
         richmedia: 'rich-media.html', estudio: 'estudio.html', contacto: 'contacto.html',
-        gracias: 'gracias.html', casos: 'casos/' },
+        gracias: 'gracias.html', cv: 'cv.html', casos: 'casos/' },
   en: { inicio: 'index.html', trabajo: 'projects.html', metodo: 'how-i-work.html',
         richmedia: 'rich-media.html', estudio: 'about.html', contacto: 'contact.html',
-        gracias: 'thanks.html', casos: 'cases/' }
+        gracias: 'thanks.html', cv: 'cv.html', casos: 'cases/' }
 };
 
 const BASE = { es: '', en: 'en/' };
 
 function R(clave) { return RUTA[L][clave]; }
+
+/* El CV existe en dos sitios: como pagina del sitio y como PDF. La pagina
+   es la fuente; el PDF se genera imprimiendola (build/pdf.js). */
+function pdfCV() { return L === 'es' ? 'cv-xabier-mauleon.pdf' : 'cv-xabier-mauleon-en.pdf'; }
 
 /* Dos prefijos distintos, y conviene no confundirlos:
    pa() sube hasta la raíz del idioma (para enlazar entre páginas),
@@ -164,7 +168,7 @@ function nav(active, up, otroIdioma) {
       <li><a href="https://www.linkedin.com/in/xabiermauleon" target="_blank" rel="noopener">LinkedIn →</a></li>
       <li><span>${esc(T('Madrid, España'))}</span></li>
     </ul>
-${cambio}    <a class="menu-cv" href="${r}cv-xabier-mauleon.pdf" target="_blank" rel="noopener">${esc(T('Descargar CV ↓'))}</a>
+${cambio}    <a class="menu-cv" href="${a}${R('cv')}">${esc(T('Ver el CV →'))}</a>
   </aside>
 
   <div class="menu-panel">
@@ -206,7 +210,7 @@ function footer(up) {
           <li><a href="${a}${R('metodo')}">${esc(T('Cómo trabajo'))}</a></li>
           <li><a href="${a}${R('estudio')}">${esc(T('Sobre mí'))}</a></li>
           <li><a href="${a}${R('contacto')}">${esc(T('Contacto'))}</a></li>
-          <li><a href="${r}cv-xabier-mauleon.pdf" target="_blank" rel="noopener">${esc(T('CV (PDF) →'))}</a></li>
+          <li><a href="${r}${pdfCV()}" target="_blank" rel="noopener">${esc(T('CV (PDF) →'))}</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -384,7 +388,7 @@ ${conflictos}
 ${parrafos}
 
       <div class="perfil-acciones">
-        <a class="btn-solido" href="${r}cv-xabier-mauleon.pdf" target="_blank" rel="noopener">${esc(C(P.perfilCV))}</a>
+        <a class="btn-solido" href="${a}${R('cv')}">${esc(C(P.perfilCV))}</a>
         <a class="btn-linea" href="${a}${R('estudio')}">${esc(C(P.perfilTray))}</a>
       </div>
     </div>
@@ -577,6 +581,126 @@ ${footer(false)}
 </main>
 `;
   return doc(C(P.titulo), body, false, '', C(P.texto), 'gracias');
+}
+
+/* ---------- CV ----------
+   Es una página del sitio, no un PDF suelto: hereda los tokens del book y
+   se genera en los dos idiomas. El PDF sale de imprimir esta misma página,
+   por eso lleva reglas de impresión en la hoja de estilos. */
+
+function cvPage() {
+  const V = require('./cv.js');
+  const a = pa(false);
+  const r = pr(false);
+
+  const cifras = lista => !lista || !lista.length ? '' : `
+        <div class="cv-cifras">
+${lista.map(c => `          <div class="cv-cifra"><b>${esc(C(c.n))}</b><span>${esc(C(c.t))}</span></div>`).join('\n')}
+        </div>`;
+
+  const experiencia = V.experiencia.map(e => `      <article class="cv-puesto">
+        <div class="cv-puesto-cab">
+          <h3>${esc(C(e.puesto))}</h3>
+          <span class="cv-fechas">${esc(C(e.fechas))}</span>
+        </div>
+        <p class="cv-org">${esc(C(e.org))}</p>
+        <ul>
+${e.puntos.map(p => `          <li>${esc(C(p))}</li>`).join('\n')}
+        </ul>${cifras(e.cifras)}
+      </article>`).join('\n\n');
+
+  const competencias = V.competencias.map(c => `        <div class="cv-skill">
+          <span class="cv-skill-t">${esc(C(c.t))}</span>
+          <span class="cv-skill-v">${esc(C(c.v))}</span>
+        </div>`).join('\n');
+
+  const formacion = V.formacion.map(f => `        <div class="cv-item">
+          <div class="cv-item-cab">
+            <span class="cv-item-t">${esc(C(f.t))}</span>
+            <span class="cv-fechas">${esc(C(f.fechas))}</span>
+          </div>
+          <span class="cv-item-org">${esc(C(f.org))}</span>${C(f.nota) ? `
+          <p>${esc(C(f.nota))}</p>` : ''}
+        </div>`).join('\n');
+
+  const certificados = V.certificados.map(c => `        <div class="cv-item">
+          <div class="cv-item-cab">
+            <span class="cv-item-t">${esc(C(c.t))}</span>
+            <span class="cv-fechas">${esc(C(c.fecha))}</span>
+          </div>
+          <span class="cv-item-org">${esc(C(c.org))}</span>
+        </div>`).join('\n');
+
+  const body = `
+${nav('cv', false, otroIdiomaHref(false, 'cv'))}
+
+<main class="cv">
+
+  <header class="cv-cabecera">
+    <h1>${esc(V.nombre)}</h1>
+    <p class="cv-rol">${esc(C(V.rol))}</p>
+    <p class="cv-contacto">
+      <a href="tel:+34607323642">${esc(V.contacto.tel)}</a>
+      <a href="mailto:${V.contacto.email}">${esc(V.contacto.email)}</a>
+      <span>${esc(C(V.contacto.lugar))}</span>
+      <a href="https://www.linkedin.com/in/xabiermauleon" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="${SITIO}">${SITIO.replace('https://', '')} ↗</a>
+    </p>
+    <p class="cv-claim">${esc(C(V.claim))}</p>
+    <p class="cv-descarga"><a class="btn-solido" href="${r}${pdfCV()}" target="_blank" rel="noopener">${esc(T('Descargar en PDF ↓'))}</a></p>
+  </header>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.perfilLabel))}</span>
+    <div class="cv-cuerpo"><p class="cv-perfil">${esc(C(V.perfil))}</p></div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.experienciaLabel))}</span>
+    <div class="cv-cuerpo">
+${experiencia}
+      <p class="cv-primera">${esc(C(V.primeraEtapa))}</p>
+    </div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.competenciasLabel))}</span>
+    <div class="cv-cuerpo">
+      <div class="cv-skills">
+${competencias}
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.formacionLabel))}</span>
+    <div class="cv-cuerpo">
+${formacion}
+    </div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.certificadosLabel))}</span>
+    <div class="cv-cuerpo">
+${certificados}
+    </div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.idiomasLabel))}</span>
+    <div class="cv-cuerpo"><p>${V.idiomas.map(i => esc(C(i))).join(' &nbsp;·&nbsp; ')}</p></div>
+  </section>
+
+  <section class="cv-bloque">
+    <span class="label">${esc(C(V.deporteLabel))}</span>
+    <div class="cv-cuerpo"><p>${esc(C(V.deporte))}</p></div>
+  </section>
+
+${footer(false)}
+
+</main>
+`;
+  return doc(V.nombre + ' — CV', body, false, '', C(V.perfil).slice(0, 180), 'cv');
 }
 
 /* ---------- Página de caso ---------- */
@@ -1101,7 +1225,8 @@ for (const idioma of VISIBLES) {
   escribir(base + RUTA[idioma].estudio, estudioPage());
   escribir(base + RUTA[idioma].contacto, contactoPage());
   escribir(base + RUTA[idioma].gracias, graciasPage());
-  escritos += 7;
+  escribir(base + RUTA[idioma].cv, cvPage());
+  escritos += 8;
 }
 
 L = 'es';
@@ -1144,7 +1269,8 @@ const CLAVES = [
   { k: 'metodo', p: '0.8' },
   { k: 'richmedia', p: '0.7' },
   { k: 'estudio', p: '0.7' },
-  { k: 'contacto', p: '0.6' }
+  { k: 'contacto', p: '0.6' },
+  { k: 'cv', p: '0.8' }
 ];
 
 /* Cada URL declara sus alternativas de idioma también en el sitemap:
