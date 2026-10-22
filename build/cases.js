@@ -1,6 +1,7 @@
 /* Datos de los casos. Cada texto lleva sus dos idiomas: { es, en }.
    Si en falta, el generador publica el castellano y lo avisa por consola.
-   `rol` dice qué hizo Xabier en el proyecto; se renderiza antes de El problema. */
+   `rol` dice qué hizo Xabier en el proyecto; se renderiza antes de El problema.
+   `borrador: true` lo deja escrito pero fuera de todo lo que se publica. */
 
 module.exports = [
   {
@@ -285,7 +286,8 @@ module.exports = [
         "href": "https://www.figma.com/design/PPNcfAzxofN01lUPRsmGU7/FLOREIG?node-id=0-1"
       }
     ],
-    "featured": true,
+    "featured": false,
+    "borrador": true,
     "definicion": {
       "es": "Identidad aplicada, sistema de diseño y web bilingüe para un festival itinerante de gastronomía y música, con un gestor de contenidos a medida detrás. El encargo tenía una condición que lo ordena todo: el cliente debe poder publicar una edición entera, con sus fotos y su venta, sin llamar a nadie. En fase de programación y producción.",
       "en": "Applied identity, design system and bilingual site for a travelling food and music festival, with a bespoke content manager behind it. The brief carried one condition that orders everything else: the client must be able to publish a whole edition, photographs and ticketing included, without calling anyone. Currently in build and production."

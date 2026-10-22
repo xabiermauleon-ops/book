@@ -4,7 +4,12 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
-const cases = require('./cases.js');
+/* Un caso con `borrador: true` se queda fuera de todo lo que se publica
+   —página propia, listado, menú, pie, sitemap y cadena de siguiente caso—
+   pero sigue escrito y versionado, listo para salir cuando toque. */
+const TODOS_LOS_CASOS = require('./cases.js');
+const BORRADORES = TODOS_LOS_CASOS.filter(c => c.borrador);
+const cases = TODOS_LOS_CASOS.filter(c => !c.borrador);
 const PAGINAS = require('./paginas.js');
 
 /* La salida vive en public/. El generador y los datos se quedan fuera,
@@ -128,6 +133,14 @@ const CLAVE = {
   'Visualización de Datos': 'datos'
 };
 
+/* Solo se enseña una categoría si tiene al menos un caso publicado.
+   Si no, el book ofrecería un filtro que no devuelve nada. */
+function categoriasConContenido() {
+  const vivas = new Set(cases.map(c => CLAVE[c.category.es]).filter(Boolean));
+  vivas.add('richmedia');
+  return FILTROS.filter(f => f.k === 'todo' || vivas.has(f.k));
+}
+
 const FILTROS = [
   { k: 'todo', label: 'Todo' },
   { k: 'uxui', label: 'UX/UI Digital' },
@@ -180,12 +193,9 @@ ${cambio}    <a class="menu-cv" href="${a}${R('cv')}">${esc(T('Ver el CV →'))}
     </div>
     <nav class="menu-nav" aria-label="${esc(T('Navegación principal'))}">
 ${fila(R('trabajo'), T('Proyectos'), 'trabajo', 'fila-grande')}
-${fila(R('trabajo') + '#uxui', T('UX/UI Digital'), null, 'fila-sub')}
-${fila(R('trabajo') + '#marca', T('Identidad y Marca'), null, 'fila-sub')}
-${fila(R('trabajo') + '#publicidad', T('Publicidad'), null, 'fila-sub')}
-${fila(R('trabajo') + '#richmedia', T('Rich Media'), 'richmedia', 'fila-sub')}
-${fila(R('trabajo') + '#editorial', T('Editorial'), null, 'fila-sub')}
-${fila(R('trabajo') + '#datos', T('Datos'), null, 'fila-sub')}
+${categoriasConContenido().filter(f => f.k !== 'todo')
+  .map(f => fila(R('trabajo') + '#' + f.k, T(f.label), f.k === 'richmedia' ? 'richmedia' : null, 'fila-sub'))
+  .join('\n')}
 ${fila(R('metodo'), T('Cómo trabajo'), 'metodo', 'fila-grande')}
 ${fila(R('estudio'), T('Sobre mí'), 'estudio', 'fila-grande')}
 ${fila(R('contacto'), T('Contacto'), 'contacto', 'fila-grande')}
@@ -219,12 +229,9 @@ function footer(up) {
       <div class="footer-col">
         <h3>${esc(T('Proyectos'))}</h3>
         <ul>
-          <li><a href="${a}${R('trabajo')}#uxui">${esc(T('UX/UI Digital'))}</a></li>
-          <li><a href="${a}${R('trabajo')}#marca">${esc(T('Identidad y Marca'))}</a></li>
-          <li><a href="${a}${R('trabajo')}#publicidad">${esc(T('Publicidad'))}</a></li>
-          <li><a href="${a}${R('trabajo')}#richmedia">${esc(T('Rich Media'))}</a></li>
-          <li><a href="${a}${R('trabajo')}#editorial">${esc(T('Editorial'))}</a></li>
-          <li><a href="${a}${R('trabajo')}#datos">${esc(T('Datos'))}</a></li>
+${categoriasConContenido().filter(f => f.k !== 'todo')
+  .map(f => `          <li><a href="${a}${R('trabajo')}#${f.k}">${esc(T(f.label))}</a></li>`)
+  .join('\n')}
         </ul>
       </div>
       <div class="footer-col">
@@ -780,7 +787,7 @@ ${footer(true)}
 /* ---------- Página de proyectos ---------- */
 
 function workPage(all) {
-  const filtros = FILTROS.map(f =>
+  const filtros = categoriasConContenido().map(f =>
     `      <button type="button" class="filtro${f.k === 'todo' ? ' activo' : ''}" data-cat="${f.k}">${esc(T(f.label))}</button>`
   ).join('\n');
 
@@ -1358,6 +1365,10 @@ fs.writeFileSync(path.join(RAIZ_REPO, 'netlify.toml'), `# Netlify compila el sit
 console.log('Escritas ' + escritos + ' páginas. Idiomas publicados: ' + VISIBLES.join(', ') +
   (PUBLICAR_INGLES ? '' : '  (el inglés está generado pero NO se publica: PUBLICAR_INGLES = false)'));
 console.log('Huellas: styles.css' + V.css + ' · script.js' + V.js);
+if (BORRADORES.length) {
+  console.log('\nEN BORRADOR, escritos pero NO publicados (' + BORRADORES.length + '):');
+  for (const b of BORRADORES) console.log('  · ' + b.slug + ' — ' + b.title.es);
+}
 console.log('Publicación: gracias.html, 404.html, robots.txt, sitemap.xml (' + urls.length + ' urls), netlify.toml');
 
 if (faltan.size) {
