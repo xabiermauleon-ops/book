@@ -299,8 +299,8 @@ module.exports = [
       "en": "PhysioGo audit"
     },
     "subtitle": {
-      "es": "Evaluación de usabilidad, interfaz y accesibilidad de una aplicación de fisioterapia en beta.",
-      "en": "A usability, interface and accessibility review of a physiotherapy app in beta."
+      "es": "Auditoría de usabilidad, interfaz y accesibilidad de una app de fisioterapia, entregada como informe argumentado y como mapa de pantallas navegable.",
+      "en": "A usability, interface and accessibility audit of a physiotherapy app, delivered as a reasoned report and as a navigable screen map."
     },
     "year": "2026",
     "category": {
@@ -308,12 +308,12 @@ module.exports = [
       "en": "Digital UX/UI"
     },
     "rol": {
-      "es": "Auditoría completa como evaluador único: diseño del método, recorrido de la aplicación, mediciones sobre la app en vivo, lectura del código, registro de hallazgos y hoja de ruta.",
-      "en": "The full audit as sole evaluator: method design, walkthrough of the app, measurements on the live build, code reading, findings register and roadmap."
+      "es": "Auditoría completa como evaluador único: diseño del método y de la taxonomía, recorrido de la aplicación, mediciones sobre la app en vivo, lectura del código, y los dos entregables —el informe escrito y el mapa de pantallas interactivo—, producidos usando Claude como instrumento de trabajo.",
+      "en": "The full audit as sole evaluator: method and taxonomy design, walkthrough of the app, measurements on the live build, code reading, and both deliverables — the written report and the interactive screen map — produced using Claude as the working instrument."
     },
     "summary": {
-      "es": "Veinte pantallas revisadas contra las diez heurísticas de Nielsen y el nivel AA de las WCAG, con los tamaños y contrastes medidos sobre la aplicación en vivo en lugar de estimados a ojo.",
-      "en": "Twenty screens reviewed against Nielsen’s ten heuristics and WCAG level AA, with sizes and contrasts measured on the live app rather than estimated by eye."
+      "es": "Veinte pantallas contra las diez heurísticas de Nielsen y el nivel AA de las WCAG, con los tamaños y contrastes medidos sobre la app en vivo. Y una entrega que no es un PDF que se archiva, sino un mapa que el equipo puede filtrar el lunes.",
+      "en": "Twenty screens against Nielsen’s ten heuristics and WCAG level AA, with sizes and contrasts measured on the live app. And a delivery that is not a PDF to be filed away, but a map the team can filter on Monday."
     },
     "problema": {
       "es": "Una aplicación de fisioterapia en beta con una base clínica sensata y un problema de orden: pide mucho antes de dar nada. Hasta el muro de pago el usuario recorre catorce pantallas, responde unas veinticuatro preguntas y da alrededor de cuarenta toques sin haber visto su plan, y la cuenta se le pide en el paso cinco, cuando todavía no ha recibido nada a cambio. Debajo había un problema peor: el perfil que más necesita la aplicación —la persona que sale de consulta con una pauta y no puede moverse de casa— no tiene vía de entrada. Se le exige autodiagnosticarse y hacer pruebas funcionales de pie, sin vídeo y sin alternativa sentada. El encargo era decir qué falla, con qué gravedad y en qué orden arreglarlo.",
@@ -372,26 +372,71 @@ module.exports = [
       },
       {
         "que": {
-          "es": "Cerrar con una hoja de ruta ordenada por esfuerzo y no solo por gravedad, y con un registro donde cada hallazgo lleva código, disciplina, gravedad y esfuerzo estimado.",
-          "en": "Close with a roadmap ordered by effort and not only by severity, and with a register where every finding carries a code, a discipline, a severity and an estimated effort."
+          "es": "Usar Claude como instrumento de la auditoría, y no como su autor.",
+          "en": "Use Claude as the audit’s instrument, not as its author."
         },
         "porque": {
-          "es": "Una lista de veintisiete problemas ordenada por gravedad paraliza a un equipo pequeño: todo parece urgente y nada se empieza. Ordenada por esfuerzo aparece lo que de verdad importa, que cuatro de los ocho fallos críticos son de esfuerzo bajo y que un único cambio en el sistema de color arregla tres de ellos a la vez. El valor de una auditoría no está en encontrar cosas, está en que alguien pueda empezar el lunes.",
-          "en": "A list of twenty-seven problems ordered by severity paralyses a small team: everything looks urgent and nothing gets started. Ordered by effort, what actually matters surfaces — that four of the eight critical failures are low effort, and that a single change to the colour system fixes three of them at once. The value of an audit is not in finding things, it is in someone being able to start on Monday."
+          "es": "La parte cara de una auditoría no es tener criterio: es el volumen. Recorrer veinte pantallas, medir catorce tamaños de letra y siete contrastes uno a uno con la fórmula de luminancia, leer noventa mil caracteres de código buscando los roles y los estados que no están, y sostener veintisiete hallazgos cruzados con tres disciplinas, cuatro niveles de gravedad y cinco acciones sin que se descuadre ninguno. A mano, eso son semanas. Así fueron días. Lo que no se delega es lo de antes y lo de después: qué marcos se aplican, dónde está exactamente la frontera entre un fallo de interfaz y una barrera de accesibilidad, qué cuenta como crítico, qué riesgo no contempla ninguna heurística publicada y en qué orden debe empezar el equipo el lunes. El instrumento mide; decidir qué se mide y qué significa sigue siendo el oficio.",
+          "en": "The expensive part of an audit is not having judgement: it is volume. Walking twenty screens, measuring fourteen type sizes and seven contrast ratios one by one with the luminance formula, reading ninety thousand characters of code looking for the roles and states that are not there, and holding twenty-seven findings crossed against three disciplines, four severity levels and five actions without a single one slipping. By hand that is weeks. This way it was days. What does not get delegated is everything before and after: which frameworks apply, where exactly the border sits between an interface fault and an accessibility barrier, what counts as critical, which risk no published heuristic covers, and what order the team should start in on Monday. The instrument measures; deciding what to measure and what it means is still the craft."
+        }
+      },
+      {
+        "que": {
+          "es": "Entregar un artefacto navegable además del informe escrito, y construirlo con los mismos criterios de accesibilidad que audita.",
+          "en": "Deliver a navigable artefact alongside the written report, and build it to the same accessibility standards it audits."
+        },
+        "porque": {
+          "es": "Un documento de veintisiete hallazgos se lee una vez y se archiva. Lo que un equipo pequeño necesita es poder preguntarle cosas: enséñame solo lo de accesibilidad, solo lo crítico, solo lo que hay que fusionar. Por eso la entrega son dos piezas con dos oficios distintos: el informe argumenta y defiende el criterio, y el mapa se usa. Y el mapa no podía predicar lo que no practica: la gravedad se codifica con forma además de con color, para quien no distingue el rojo del ámbar; los controles cumplen los 44 píxeles que el informe le reclama a la app; el contraste pasa el nivel AA; y las etiquetas de disciplina se distinguen por el trazo del borde y no solo por el tono. Auditar la accesibilidad de alguien con una pieza inaccesible habría invalidado el informe entero. El mapa además ordena por esfuerzo y no solo por gravedad: cuatro de los ocho fallos críticos son baratos de arreglar y tres de esos cuatro se resuelven con un único cambio en el sistema de color. Una lista ordenada por gravedad paraliza a un equipo pequeño; ordenada por esfuerzo, se puede empezar.",
+          "en": "A twenty-seven-finding document is read once and filed. What a small team needs is to be able to ask it things: show me only accessibility, only the criticals, only what has to be merged. So the delivery is two pieces doing two different jobs: the report argues and defends the judgement, and the map gets used. And the map could not preach what it fails to practise: severity is encoded by shape as well as by colour, for anyone who cannot tell red from amber; the controls meet the 44 pixels the report demands of the app; contrast passes level AA; and the discipline tags are distinguished by border treatment, not by hue alone. Auditing somebody’s accessibility with an inaccessible piece would have invalidated the whole report. The map also orders by effort rather than severity alone: four of the eight critical failures are cheap to fix and three of those four are resolved by a single change to the colour system. A list ordered by severity paralyses a small team; ordered by effort, it can be started."
         }
       }
     ],
     "resultado": {
-      "es": "Un informe de siete partes más anexo sobre veinte pantallas: seis con fallos críticos, nueve con moderados y cinco con leves. De las diez heurísticas de Nielsen, la aplicación aprueba una, cumple seis parcialmente y suspende tres —prevención de errores, recuperación de errores y ayuda—. Hoy no alcanza el nivel AA de las WCAG. Los veintisiete hallazgos van codificados, clasificados por disciplina y gravedad y estimados en esfuerzo, con su propuesta al lado. Y por encima de todos ellos, tres decisiones concentran casi todo el beneficio: reordenar el recorrido de catorce pasos a nueve moviendo el registro detrás del resultado, dar la primera sesión completa antes de cobrar y prometer solo lo que ya existe, y un único cambio en el sistema de color que resuelve de una vez los tres fallos críticos de interfaz.",
-      "en": "A seven-part report plus an appendix covering twenty screens: six with critical failures, nine with moderate ones and five with minor ones. Of Nielsen’s ten heuristics the app passes one, partly meets six and fails three — error prevention, error recovery and help. It does not currently reach WCAG level AA. The twenty-seven findings are coded, classified by discipline and severity, estimated for effort, each with its proposal alongside. And above all of them, three decisions concentrate almost all the benefit: reordering the journey from fourteen steps to nine by moving registration behind the result, giving the first complete session before charging and promising only what already exists, and a single change to the colour system that resolves all three critical interface failures at once."
+      "es": "Dos entregables. El informe, de siete partes más anexo: veinte pantallas —seis con fallos críticos, nueve con moderados y cinco con leves—, veintisiete hallazgos codificados con su disciplina, su gravedad, su esfuerzo estimado y su propuesta, el resultado heurística a heurística —una aprobada, seis parciales y tres suspensas— y la constatación de que hoy la app no alcanza el nivel AA. Y el mapa de pantallas, que es donde eso se vuelve utilizable: las veinte pantallas repartidas en cuatro fases, cada ficha con su gravedad, sus etiquetas de disciplina y la acción recomendada —eliminar, fusionar, mover, hacer opcional o mantener—, los hallazgos desplegables ficha a ficha, los fallos transversales aparte porque se arreglan una sola vez en el sistema, lo que queda sin explorar dicho en voz alta, y filtros por disciplina, gravedad y acción. Arriba del todo, la comparación que resume el encargo: el recorrido actual de catorce pantallas hasta el muro de pago frente al propuesto de nueve.",
+      "en": "Two deliverables. The report, seven parts plus an appendix: twenty screens — six with critical failures, nine with moderate ones and five with minor ones — twenty-seven findings coded with their discipline, severity, estimated effort and proposal, the result heuristic by heuristic — one pass, six partial, three fails — and the finding that the app does not currently reach level AA. And the screen map, which is where that becomes usable: twenty screens across four phases, each card with its severity, its discipline tags and the recommended action — remove, merge, move, make optional or keep — findings that open card by card, cross-cutting failures kept apart because they are fixed once in the system, what remains unexplored said out loud, and filters by discipline, severity and action. At the top, the comparison that sums up the brief: the current fourteen-screen journey to the paywall against the proposed nine."
     },
-    "links": [],
+    "links": [
+      {
+        "label": {
+          "es": "Mapa de pantallas",
+          "en": "Screen map"
+        },
+        "href": "https://claude.ai/artifact/Wsvf3Ucqfm1KvnzfiFq5UK"
+      }
+    ],
     "featured": false,
     "definicion": {
-      "es": "Evaluación heurística experta de una aplicación de fisioterapia en beta, contra las diez heurísticas de Nielsen y el nivel AA de las WCAG 2.2, con las medidas tomadas sobre la app en vivo y una lectura de su código. Veinte pantallas, veintisiete hallazgos codificados y una hoja de ruta ordenada por esfuerzo, no por gravedad, para que un equipo pequeño pueda empezar por algo.",
-      "en": "An expert heuristic evaluation of a physiotherapy app in beta, against Nielsen’s ten heuristics and WCAG 2.2 level AA, with measurements taken on the live build and a reading of its code. Twenty screens, twenty-seven coded findings and a roadmap ordered by effort rather than severity, so a small team can start somewhere."
+      "es": "Evaluación heurística experta de una app de fisioterapia en beta, contra las diez heurísticas de Nielsen y el nivel AA de las WCAG 2.2, con las medidas tomadas sobre la app en vivo y una lectura de su código. Veinte pantallas y veintisiete hallazgos, entregados en dos piezas: el informe que argumenta y un mapa de pantallas filtrable por disciplina, gravedad y acción, construido con los mismos criterios de accesibilidad que audita.",
+      "en": "An expert heuristic evaluation of a physiotherapy app in beta, against Nielsen’s ten heuristics and WCAG 2.2 level AA, with measurements taken on the live build and a reading of its code. Twenty screens and twenty-seven findings, delivered as two pieces: the report that argues the case, and a screen map filterable by discipline, severity and action, built to the same accessibility standards it audits."
     },
-    "imagenes": []
+    "imagenes": [
+      {
+        "src": "img/physiogo/mapa.jpg",
+        "w": 1800,
+        "h": 1772,
+        "alt": {
+          "es": "El mapa de pantallas de PhysioGo por fases —entrada, cuestionario, entrega y dentro de la app—, con una ficha por pantalla que muestra su gravedad, sus etiquetas de UX, UI y accesibilidad, la acción recomendada y los hallazgos desplegables",
+          "en": "The PhysioGo screen map by phase — entry, questionnaire, delivery and inside the app — with a card per screen showing its severity, its UX, UI and accessibility tags, the recommended action and expandable findings"
+        },
+        "pie": {
+          "es": "El entregable. Las veinte pantallas en cuatro fases: cada ficha dice su gravedad, cuántos fallos tiene de UX, de UI y de accesibilidad, y qué hacer con ella —eliminar, fusionar, mover, hacer opcional o mantener corrigiéndola—. Se filtra por cualquiera de las tres cosas.",
+          "en": "The deliverable. Twenty screens across four phases: each card states its severity, how many UX, UI and accessibility faults it holds, and what to do with it — remove, merge, move, make optional, or keep and fix. It filters by any of the three."
+        }
+      },
+      {
+        "src": "img/physiogo/recorridos.jpg",
+        "w": 1800,
+        "h": 415,
+        "alt": {
+          "es": "Comparación entre el recorrido actual de catorce pantallas hasta el muro de pago y el propuesto de nueve pasos, indicando de qué pantalla antigua sale cada paso nuevo",
+          "en": "Comparison between the current fourteen-screen journey to the paywall and the proposed nine-step one, showing which old screen each new step comes from"
+        },
+        "pie": {
+          "es": "Catorce pasos frente a nueve, y de qué pantalla antigua sale cada paso nuevo. La gravedad va codificada con forma además de con color.",
+          "en": "Fourteen steps against nine, and which old screen each new step comes from. Severity is encoded by shape as well as by colour."
+        }
+      }
+    ]
   },
   {
     "slug": "corrupcion",

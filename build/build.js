@@ -5,7 +5,6 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const cases = require('./cases.js');
-const FIGURAS = require('./figuras.js');
 const PAGINAS = require('./paginas.js');
 
 /* La salida vive en public/. El generador y los datos se quedan fuera,
@@ -257,7 +256,7 @@ function footer(up) {
 function linkChips(links, cls) {
   if (!links || !links.length) return '';
   const items = links
-    .map(l => `<a href="${l.href}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`)
+    .map(l => `<a href="${l.href}" target="_blank" rel="noopener">${esc(C(l.label))} ↗</a>`)
     .join('\n        ');
   return `      <div class="${cls}">
         ${items}
@@ -303,23 +302,6 @@ ${body}
 
 /* Galería del caso. La primera imagen va a ancho completo y el resto
    en una fila, porque suelen ser detalles de menor entidad. */
-/* Figuras dibujadas del caso: SVG en línea, no imágenes. Usan currentColor
-   para seguir al tema claro y oscuro, igual que el diagrama del método. */
-function figuras(lista) {
-  if (!lista || !lista.length) return '';
-  return `
-  <section class="case-figuras">
-${lista.map(f => `    <figure class="case-figura">
-      <span class="label">${esc(C(f.titulo))}</span>
-      <div class="figura-lienzo">
-${f.svg(esc(C(f.alt)), L)}
-      </div>
-      <figcaption>${esc(C(f.pie))}</figcaption>
-    </figure>`).join('\n')}
-  </section>
-`;
-}
-
 function galeria(imagenes) {
   if (!imagenes || !imagenes.length) return '';
   const uno = im => `      <figure>
@@ -780,7 +762,6 @@ ${decisiones}
     </section>
 
   </div>
-${figuras(FIGURAS[c.slug])}
 ${galeria(c.imagenes)}
 
 ${c.links && c.links.length ? linkChips(c.links, 'case-links') + '\n' : ''}
