@@ -5,6 +5,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const cases = require('./cases.js');
+const FIGURAS = require('./figuras.js');
 const PAGINAS = require('./paginas.js');
 
 /* La salida vive en public/. El generador y los datos se quedan fuera,
@@ -122,6 +123,7 @@ function esc(s) {
 // Categoría legible -> clave de filtro
 const CLAVE = {
   'UX/UI Digital': 'uxui',
+  'Identidad y Marca': 'marca',
   'Publicidad': 'publicidad',
   'Editorial': 'editorial',
   'Visualización de Datos': 'datos'
@@ -130,6 +132,7 @@ const CLAVE = {
 const FILTROS = [
   { k: 'todo', label: 'Todo' },
   { k: 'uxui', label: 'UX/UI Digital' },
+  { k: 'marca', label: 'Identidad y Marca' },
   { k: 'publicidad', label: 'Publicidad' },
   { k: 'richmedia', label: 'Rich Media' },
   { k: 'editorial', label: 'Editorial' },
@@ -179,6 +182,7 @@ ${cambio}    <a class="menu-cv" href="${a}${R('cv')}">${esc(T('Ver el CV →'))}
     <nav class="menu-nav" aria-label="${esc(T('Navegación principal'))}">
 ${fila(R('trabajo'), T('Proyectos'), 'trabajo', 'fila-grande')}
 ${fila(R('trabajo') + '#uxui', T('UX/UI Digital'), null, 'fila-sub')}
+${fila(R('trabajo') + '#marca', T('Identidad y Marca'), null, 'fila-sub')}
 ${fila(R('trabajo') + '#publicidad', T('Publicidad'), null, 'fila-sub')}
 ${fila(R('trabajo') + '#richmedia', T('Rich Media'), 'richmedia', 'fila-sub')}
 ${fila(R('trabajo') + '#editorial', T('Editorial'), null, 'fila-sub')}
@@ -217,6 +221,7 @@ function footer(up) {
         <h3>${esc(T('Proyectos'))}</h3>
         <ul>
           <li><a href="${a}${R('trabajo')}#uxui">${esc(T('UX/UI Digital'))}</a></li>
+          <li><a href="${a}${R('trabajo')}#marca">${esc(T('Identidad y Marca'))}</a></li>
           <li><a href="${a}${R('trabajo')}#publicidad">${esc(T('Publicidad'))}</a></li>
           <li><a href="${a}${R('trabajo')}#richmedia">${esc(T('Rich Media'))}</a></li>
           <li><a href="${a}${R('trabajo')}#editorial">${esc(T('Editorial'))}</a></li>
@@ -298,6 +303,23 @@ ${body}
 
 /* Galería del caso. La primera imagen va a ancho completo y el resto
    en una fila, porque suelen ser detalles de menor entidad. */
+/* Figuras dibujadas del caso: SVG en línea, no imágenes. Usan currentColor
+   para seguir al tema claro y oscuro, igual que el diagrama del método. */
+function figuras(lista) {
+  if (!lista || !lista.length) return '';
+  return `
+  <section class="case-figuras">
+${lista.map(f => `    <figure class="case-figura">
+      <span class="label">${esc(C(f.titulo))}</span>
+      <div class="figura-lienzo">
+${f.svg(esc(C(f.alt)), L)}
+      </div>
+      <figcaption>${esc(C(f.pie))}</figcaption>
+    </figure>`).join('\n')}
+  </section>
+`;
+}
+
 function galeria(imagenes) {
   if (!imagenes || !imagenes.length) return '';
   const uno = im => `      <figure>
@@ -734,7 +756,12 @@ ${nav('trabajo', true, otroIdiomaHref(true, null, c.slug))}
   </section>
 
   <div class="case-body">
-
+${c.rol ? `
+    <section class="case-block case-block--rol">
+      <span class="label">${esc(T('Mi papel'))}</span>
+      <p>${esc(C(c.rol))}</p>
+    </section>
+` : ''}
     <section class="case-block">
       <span class="label">${esc(T('El problema'))}</span>
       <p>${esc(C(c.problema))}</p>
@@ -753,6 +780,7 @@ ${decisiones}
     </section>
 
   </div>
+${figuras(FIGURAS[c.slug])}
 ${galeria(c.imagenes)}
 
 ${c.links && c.links.length ? linkChips(c.links, 'case-links') + '\n' : ''}

@@ -541,6 +541,10 @@ a.case-card:hover .card-cta { color: var(--azul-fg); }
   border-bottom: 1px solid var(--divider-soft);
 }
 .case-block:last-child { border-bottom: none; }
+/* El papel que tuve en el proyecto: primer bloque del caso, en el tono
+   del cuerpo pero un punto más presente, para que se lea sin buscarlo. */
+.case-block--rol { padding-block: 30px 36px; }
+.case-block--rol > p { color: var(--ink); font-size: 1.1rem; line-height: 1.55; }
 .case-block .label {
   width: 160px;
   flex-shrink: 0;
@@ -1739,4 +1743,39 @@ html {
   .cv-puesto ul { orphans: 2; widows: 2; }
   .cv-cifras { break-before: avoid; page-break-before: avoid; }
   a[href]::after { content: none !important; }
+}
+
+
+/* ---------- Figuras dibujadas del caso ---------- */
+/* SVG en línea, no imágenes: heredan el color del tema con currentColor. */
+.case-figuras {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  margin-block: 56px 8px;
+}
+.case-figura { margin: 0; display: flex; flex-direction: column; gap: 18px; }
+.case-figura > .label {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink);
+}
+.figura-lienzo {
+  border-top: 1px solid var(--divider-soft);
+  border-bottom: 1px solid var(--divider-soft);
+  padding-block: 28px;
+  overflow-x: auto;
+}
+.figura-lienzo > svg { display: block; width: 100%; height: auto; min-width: 560px; color: var(--ink); }
+.case-figura > figcaption {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 660px;
+}
+@media (max-width: 640px) {
+  .case-figuras { gap: 44px; }
+  .figura-lienzo { padding-block: 20px; }
 }

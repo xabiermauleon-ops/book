@@ -36,6 +36,8 @@ module.exports = {
   /* --- Páginas de caso --- */
   '← Proyectos': '← Projects',
   'El problema': 'The problem',
+  'Mi papel': 'My role',
+  'Identidad y Marca': 'Brand Identity',
   'Las decisiones': 'The decisions',
   'El resultado': 'The outcome',
   'Por qué': 'Why',

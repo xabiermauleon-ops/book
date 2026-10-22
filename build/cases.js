@@ -1,5 +1,6 @@
 /* Datos de los casos. Cada texto lleva sus dos idiomas: { es, en }.
-   Si en falta, el generador publica el castellano y lo avisa por consola. */
+   Si en falta, el generador publica el castellano y lo avisa por consola.
+   `rol` dice qué hizo Xabier en el proyecto; se renderiza antes de El problema. */
 
 module.exports = [
   {
@@ -16,6 +17,10 @@ module.exports = [
     "category": {
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
+    },
+    "rol": {
+      "es": "Diseñador UX/UI único del proyecto. Definición, arquitectura de información, sistema de diseño y ejecución completa, en sociedad creativa con el director de arte y fotógrafo Javier Garceche.",
+      "en": "Sole UX/UI designer on the project. Definition, information architecture, design system and full execution, in creative partnership with art director and photographer Javier Garceche."
     },
     "summary": {
       "es": "No es una web: es un producto SaaS completo, con el panel de gestión y el cuadro de mando financiero que el negocio usa cada mes para decidir.",
@@ -182,6 +187,213 @@ module.exports = [
     ]
   },
   {
+    "slug": "floreig",
+    "title": {
+      "es": "Floreig Food Fest",
+      "en": "Floreig Food Fest"
+    },
+    "subtitle": {
+      "es": "La marca de un festival itinerante de gastronomía y música, su web bilingüe y el gestor que la mantiene viva.",
+      "en": "The brand of a travelling food and music festival, its bilingual site, and the back office that keeps it alive."
+    },
+    "year": "2026",
+    "category": {
+      "es": "Identidad y Marca",
+      "en": "Brand Identity"
+    },
+    "rol": {
+      "es": "Dirección creativa y diseño completo: identidad aplicada, sistema de diseño, diseño de la web y del gestor de contenidos, y la decisión y configuración del alojamiento. En fase de programación y producción.",
+      "en": "Creative direction and full design: applied identity, design system, design of the site and of the content manager, and the hosting decision and setup. Currently in build and production."
+    },
+    "summary": {
+      "es": "Un festival con tres ediciones a la espalda y ninguna casa propia en internet. Marca, sistema y web en dos idiomas; y detrás, un gestor a medida para que el cliente no dependa de nadie para publicar.",
+      "en": "A festival with three editions behind it and no home of its own online. Brand, system and site in two languages; and behind it, a bespoke back office so the client depends on nobody to publish."
+    },
+    "problema": {
+      "es": "Floreig es un formato itinerante de gastronomía, música y comunidad que levantan dos socios con sensibilidades distintas —un grupo de restauración y una compañía de artes escénicas— y que cada edición ocupa un espacio diferente. Tenía dossier, tenía fotografía y tenía tres ediciones hechas, pero no tenía sitio donde contarlo: la marca vivía en papel y en redes, y cada edición se anunciaba y se olvidaba. El encargo venía con una condición que lo ordenaba todo: cuando el festival anuncie la cuarta edición, el cliente tiene que poder publicarla, subir sus fotos y cerrar la venta sin llamarme. Eso convierte un encargo de identidad en un encargo de producto, porque obliga a diseñar no solo lo que se ve, sino lo que ocurre cuando lo llena otra persona.",
+      "en": "Floreig is a travelling format of food, music and community run by two partners with different sensibilities — a restaurant group and a performing arts company — occupying a different space each edition. It had a brand dossier, it had photography and it had three editions behind it, but it had nowhere to tell any of it: the brand lived on paper and on social media, and each edition was announced and then forgotten. The brief came with one condition that ordered everything else: when the festival announces its fourth edition, the client has to be able to publish it, upload the photographs and handle ticketing without calling me. That turns an identity brief into a product brief, because it forces you to design not only what is seen, but what happens when somebody else fills it."
+    },
+    "decisiones": [
+      {
+        "que": {
+          "es": "Construir una aplicación propia con su gestor en lugar de montar el sitio sobre una plataforma cerrada o un gestor de contenidos externo.",
+          "en": "Build a bespoke application with its own back office instead of putting the site on a closed platform or an off-the-shelf content manager."
+        },
+        "porque": {
+          "es": "El contenido real del festival —ediciones con galería propia, cuatro zonas, colaboradores que cambian cada año— no encaja en las plantillas de una plataforma genérica sin retorcerlas, y retorcerlas es lo que convierte un sitio en algo que solo sabe mantener quien lo hizo. Un gestor propio es más trabajo al principio y mucho menos después: el cliente entra, cambia un texto o sube veinte fotos, y no hay licencia mensual ni dependencia de nadie.",
+          "en": "The festival’s real content — editions with their own galleries, four zones, partners that change each year — does not fit a generic platform’s templates without bending them, and bending them is what turns a site into something only its maker can maintain. A back office of your own is more work up front and far less afterwards: the client logs in, changes a line or uploads twenty photographs, and there is no monthly licence and no dependence on anybody."
+        }
+      },
+      {
+        "que": {
+          "es": "Tomar la paleta y la tipografía del dossier del cliente al pie de la letra, sin reinterpretarlas, y limitar después la dirección a granate y arena con la fotografía a sangre como fondo.",
+          "en": "Take the palette and typography from the client’s dossier literally, without reinterpreting them, and then narrow the direction to claret and sand with full-bleed photography as the background."
+        },
+        "porque": {
+          "es": "La marca ya existía y funcionaba en papel; el encargo era llevarla a pantalla, no rehacerla, y un rediseño encubierto habría costado discusiones que no aportaban nada. Lo que sí hice fue retirar el oliva como color de fondo a mitad del proyecto: con tres colores de fondo compitiendo, la fotografía —que es lo que vende un festival— quedaba reducida a ilustración. Con dos, pasa a ser el fondo.",
+          "en": "The brand already existed and worked on paper; the brief was to bring it to screen, not to redo it, and a redesign by stealth would have cost arguments that bought nothing. What I did change, halfway through, was dropping olive as a background colour: with three background colours competing, the photography — which is what sells a festival — was reduced to illustration. With two, it becomes the ground."
+        }
+      },
+      {
+        "que": {
+          "es": "Diseñar la galería de cada edición como un patrón repetible que el código aplica en bucle —una foto ancha y dos a media anchura— en lugar de como una composición cerrada.",
+          "en": "Design each edition’s gallery as a repeatable pattern the code loops — one wide photograph and two at half width — rather than as a fixed composition."
+        },
+        "porque": {
+          "es": "Es la decisión de la que más orgulloso estoy, y nace de aceptar que esta retícula no la voy a llenar yo. Una composición de autor se rompe en cuanto el cliente sube siete fotos en vez de las seis que tenías previstas, y entonces o le pides que suba seis, que es ridículo, o el sitio se afea solo. Un patrón que encaja con cualquier número de imágenes no es una renuncia al diseño: es el diseño, hecho para sobrevivir a quien lo usa.",
+          "en": "This is the decision I am proudest of, and it comes from accepting that I am not the one who will fill this grid. An authored composition breaks the moment the client uploads seven photographs instead of the six you planned for, and then either you ask them to upload six, which is absurd, or the site degrades on its own. A pattern that works with any number of images is not a retreat from design: it is the design, built to survive the person using it."
+        }
+      },
+      {
+        "que": {
+          "es": "Desplegar la galería dentro de la propia página de ediciones anteriores, empujando el contenido hacia abajo, en lugar de abrir una pantalla aparte.",
+          "en": "Open each gallery inside the previous-editions page itself, pushing the content down, instead of taking over a separate screen."
+        },
+        "porque": {
+          "es": "Quien mira ediciones anteriores está comparando: quiere ver una, volver y ver otra. Mandarlo a una pantalla propia le obliga a rehacer el camino cada vez y le hace perder el sitio donde estaba. Desplegar in situ cuesta más de resolver y ahorra dos toques por cada edición que mire.",
+          "en": "Someone browsing past editions is comparing: they want to see one, come back and see another. Sending them to a screen of its own forces them to retrace their steps each time and loses their place. Opening it in situ is harder to solve and saves two taps for every edition they look at."
+        }
+      },
+      {
+        "que": {
+          "es": "Reservar la tipografía de titulares de la marca a los títulos grandes y a las cifras, y resolver todo titular pequeño con la tipografía de texto.",
+          "en": "Reserve the brand’s display face for large headlines and figures, and resolve every small heading with the text face."
+        },
+        "porque": {
+          "es": "La display de la marca es una stencil, y una stencil en tamaño pequeño deja de leerse y empieza a decorar: los huecos que le dan carácter a 56 px se comen la letra a 16. Separar los dos oficios —una tipografía que da carácter y otra que se lee— es lo que permite usar la de carácter sin gastarla.",
+          "en": "The brand’s display face is a stencil, and a stencil at small sizes stops reading and starts decorating: the gaps that give it character at 56px eat the letterform at 16. Separating the two jobs — a face that carries character and a face that reads — is what lets you use the first without wearing it out."
+        }
+      },
+      {
+        "que": {
+          "es": "Diseñar el sitio desde el móvil y dejar el escritorio como la versión ancha, y no al revés.",
+          "en": "Design the site from the phone up and treat the desktop as the wide version, not the other way round."
+        },
+        "porque": {
+          "es": "Un festival se consulta de pie, en la calle, con una mano, normalmente mientras alguien decide si va. El escritorio existe, pero es el caso secundario. Empezar por él habría producido un sitio ancho reducido a la fuerza, que es exactamente el sitio que se encuentra la mayoría de los visitantes.",
+          "en": "A festival is looked up standing in the street, one-handed, usually while someone decides whether to go. The desktop exists, but it is the secondary case. Starting there would have produced a wide site squeezed down by force, which is exactly the site most visitors would have met."
+        }
+      }
+    ],
+    "resultado": {
+      "es": "Un sistema de diseño documentado y siete páginas en castellano e inglés: inicio, el concepto con sus cuatro zonas, la próxima edición con su ficha desplegable y su compra, quiénes somos con los dos socios, ediciones anteriores con galería in situ, contacto y entradas. La paleta son siete tonos con su uso declarado, la tipografía seis estilos, y la fototeca reúne las veintitrés fotografías del cliente de forma que cambiar una imagen es copiar un relleno. Detrás queda el gestor: dos o tres personas editando textos e imágenes, el formulario de contacto guardando en base de datos con exportación a Excel, y el dominio y la infraestructura a nombre del cliente. El proyecto está hoy en fase de programación y producción.",
+      "en": "A documented design system and seven pages in Spanish and English: home, the concept with its four zones, the next edition with its expandable card and ticketing, who we are with the two partners, previous editions with in-page galleries, contact and tickets. The palette is seven tones with their use declared, the typography six styles, and the photo library holds the client’s twenty-three photographs in a way that makes swapping an image a matter of copying a fill. Behind it sits the back office: two or three people editing copy and images, the contact form writing to a database with export to Excel, and the domain and infrastructure in the client’s name. The project is currently in build and production."
+    },
+    "links": [
+      {
+        "label": "Figma",
+        "href": "https://www.figma.com/design/PPNcfAzxofN01lUPRsmGU7/FLOREIG?node-id=0-1"
+      }
+    ],
+    "featured": true,
+    "definicion": {
+      "es": "Identidad aplicada, sistema de diseño y web bilingüe para un festival itinerante de gastronomía y música, con un gestor de contenidos a medida detrás. El encargo tenía una condición que lo ordena todo: el cliente debe poder publicar una edición entera, con sus fotos y su venta, sin llamar a nadie. En fase de programación y producción.",
+      "en": "Applied identity, design system and bilingual site for a travelling food and music festival, with a bespoke content manager behind it. The brief carried one condition that orders everything else: the client must be able to publish a whole edition, photographs and ticketing included, without calling anyone. Currently in build and production."
+    },
+    "imagenes": []
+  },
+  {
+    "slug": "physiogo",
+    "title": {
+      "es": "Auditoría de PhysioGo",
+      "en": "PhysioGo audit"
+    },
+    "subtitle": {
+      "es": "Evaluación de usabilidad, interfaz y accesibilidad de una aplicación de fisioterapia en beta.",
+      "en": "A usability, interface and accessibility review of a physiotherapy app in beta."
+    },
+    "year": "2026",
+    "category": {
+      "es": "UX/UI Digital",
+      "en": "Digital UX/UI"
+    },
+    "rol": {
+      "es": "Auditoría completa como evaluador único: diseño del método, recorrido de la aplicación, mediciones sobre la app en vivo, lectura del código, registro de hallazgos y hoja de ruta.",
+      "en": "The full audit as sole evaluator: method design, walkthrough of the app, measurements on the live build, code reading, findings register and roadmap."
+    },
+    "summary": {
+      "es": "Veinte pantallas revisadas contra las diez heurísticas de Nielsen y el nivel AA de las WCAG, con los tamaños y contrastes medidos sobre la aplicación en vivo en lugar de estimados a ojo.",
+      "en": "Twenty screens reviewed against Nielsen’s ten heuristics and WCAG level AA, with sizes and contrasts measured on the live app rather than estimated by eye."
+    },
+    "problema": {
+      "es": "Una aplicación de fisioterapia en beta con una base clínica sensata y un problema de orden: pide mucho antes de dar nada. Hasta el muro de pago el usuario recorre catorce pantallas, responde unas veinticuatro preguntas y da alrededor de cuarenta toques sin haber visto su plan, y la cuenta se le pide en el paso cinco, cuando todavía no ha recibido nada a cambio. Debajo había un problema peor: el perfil que más necesita la aplicación —la persona que sale de consulta con una pauta y no puede moverse de casa— no tiene vía de entrada. Se le exige autodiagnosticarse y hacer pruebas funcionales de pie, sin vídeo y sin alternativa sentada. El encargo era decir qué falla, con qué gravedad y en qué orden arreglarlo.",
+      "en": "A physiotherapy app in beta with sound clinical foundations and a problem of order: it asks for a great deal before giving anything. Before the paywall the user crosses fourteen screens, answers some twenty-four questions and makes around forty taps without having seen their plan, and the account is requested at step five, when they have received nothing in return. Underneath sat a worse problem: the profile that needs the app most — the person leaving a clinic with a prescribed routine who cannot move around at home — has no way in. They are asked to self-diagnose and to perform standing functional tests, with no video and no seated alternative. The brief was to say what fails, how badly, and in what order to fix it."
+    },
+    "decisiones": [
+      {
+        "que": {
+          "es": "Evaluar contra marcos publicados y no contra mi criterio: las diez heurísticas de Nielsen, el nivel AA de las WCAG 2.2 y el método de recorrido cognitivo de Polson, Lewis, Wharton y Rieman.",
+          "en": "Evaluate against published frameworks rather than against my own taste: Nielsen’s ten heuristics, WCAG 2.2 level AA, and the cognitive walkthrough method of Polson, Lewis, Wharton and Rieman."
+        },
+        "porque": {
+          "es": "Una auditoría que se apoya en el gusto del auditor se discute en la primera reunión y se archiva en la segunda. Una que dice «esto incumple el criterio 1.4.3 de las WCAG» no se discute: se arregla o se asume. El marco no está ahí para dar pedigrí al informe, está para que el equipo pueda llevarle la contraria con datos en lugar de con opiniones.",
+          "en": "An audit resting on the auditor’s taste gets argued with in the first meeting and filed in the second. One that says “this fails WCAG criterion 1.4.3” is not argued with: it is fixed or it is accepted. The framework is not there to give the report a pedigree, it is there so the team can disagree with it using data rather than opinion."
+        }
+      },
+      {
+        "que": {
+          "es": "Medir en lugar de opinar: tamaños, áreas táctiles y contrastes tomados sobre la aplicación en vivo, con la fórmula de luminancia de las WCAG, más la lectura de unos noventa mil caracteres del código de la app.",
+          "en": "Measure instead of opine: sizes, tap targets and contrast taken on the live app with the WCAG relative-luminance formula, plus a reading of some ninety thousand characters of the app’s own script."
+        },
+        "porque": {
+          "es": "«El contraste es bajo» es una impresión y se negocia. «El texto terciario está a 2,5:1 cuando el nivel AA exige 4,5:1, y aparece en seis componentes» es un hecho, trae su propia solución y se arregla en un sitio. Lo mismo con la escala de dolor, que es el dato clínico central de la aplicación y se tocaba en botones de 23,6 píxeles de ancho cuando el mínimo recomendado es 44. La lectura del código añadió lo que la pantalla no enseña: ningún rol de opción, ningún estado seleccionado, ninguna región de aviso y ninguna zona principal declarada, es decir, una aplicación de salud que un lector de pantalla no sabe narrar.",
+          "en": "“The contrast is low” is an impression, and it gets negotiated. “Tertiary text sits at 2.5:1 where level AA requires 4.5:1, and it appears in six components” is a fact, it carries its own fix, and it is repaired in one place. The same with the pain scale, the app’s central clinical datum, operated through buttons 23.6 pixels wide where the recommended minimum is 44. Reading the code added what the screen does not show: no option roles, no selected states, no live regions and no main landmark — a health app a screen reader cannot narrate."
+        }
+      },
+      {
+        "que": {
+          "es": "Recorrer la aplicación como dos personas concretas y no como un usuario medio: un paciente de clínica que no puede moverse de casa y un paciente general.",
+          "en": "Walk the app as two specific people rather than as an average user: a clinic patient unable to move around at home, and a general patient."
+        },
+        "porque": {
+          "es": "El usuario medio no existe, y diseñar para él produce un producto que no falla del todo con nadie y no sirve del todo a nadie. Separar los dos recorridos fue lo que sacó a la luz el hallazgo más importante del informe: el segundo perfil llega al final, agotado pero entero; el primero falla en la primera pantalla, porque la vía «mi fisioterapeuta me ha dado esto» sencillamente no existe. Ese no es un problema de usabilidad, es un problema de a quién has decidido dejar fuera.",
+          "en": "The average user does not exist, and designing for them produces a product that fails nobody completely and serves nobody completely. Splitting the two walkthroughs is what surfaced the report’s most important finding: the second profile reaches the end, exhausted but intact; the first fails on the opening screen, because the route “my physiotherapist gave me this” simply does not exist. That is not a usability problem, it is a question of who you have decided to leave out."
+        }
+      },
+      {
+        "que": {
+          "es": "Añadir una cuarta lente que las heurísticas no contemplan: el riesgo para la salud del usuario.",
+          "en": "Add a fourth lens the heuristics do not cover: risk to the user’s health."
+        },
+        "porque": {
+          "es": "Las heurísticas de Nielsen miden si una interfaz se entiende, no si puede hacerte daño. Unas pruebas funcionales que piden tocar el suelo, sentarse y levantarse cinco veces e inclinarse hacia atrás, sin demostración y sin versión sentada, no son un fallo de usabilidad: son un riesgo de caída en una aplicación dirigida a personas con dolor. Clasificarlas como críticas exigía un criterio propio, porque ninguno de los marcos prestados lo daba.",
+          "en": "Nielsen’s heuristics measure whether an interface is understood, not whether it can hurt you. Functional tests asking the user to touch the floor, stand up and sit down five times and lean backwards, with no demonstration and no seated version, are not a usability failure: they are a fall risk in an app aimed at people in pain. Classifying them as critical required a criterion of my own, because none of the borrowed frameworks supplied one."
+        }
+      },
+      {
+        "que": {
+          "es": "Declarar los límites del informe en su primera página, antes que ninguna conclusión, y dejar escrito lo que no se ha podido comprobar.",
+          "en": "Declare the report’s limits on its first page, ahead of any conclusion, and write down what could not be checked."
+        },
+        "porque": {
+          "es": "Una auditoría que no dice lo que no ha mirado invita a tratar sus silencios como aprobados, y eso en una aplicación de salud es peligroso. Así que está escrito: la ha hecho un solo evaluador cuando lo recomendable son de tres a cinco, no hay usuarios reales, las medidas se tomaron en escritorio dentro del marco de móvil y no se ha probado con lector de pantalla. Y queda señalada la pantalla de más riesgo clínico de toda la aplicación —qué ocurre al responder que sí a un síntoma de alarma— como primera comprobación pendiente del equipo. Reconocer el agujero vale más que fingir que no está.",
+          "en": "An audit that does not say what it failed to look at invites its silences to be read as approvals, and in a health app that is dangerous. So it is written down: a single evaluator where three to five are recommended, no real users, measurements taken on desktop inside the app’s phone frame, and no screen-reader pass. And the single highest clinical-risk screen in the app — what happens when the user answers yes to a red-flag symptom — is named as the team’s first outstanding check. Owning the gap is worth more than pretending it is not there."
+        }
+      },
+      {
+        "que": {
+          "es": "Cerrar con una hoja de ruta ordenada por esfuerzo y no solo por gravedad, y con un registro donde cada hallazgo lleva código, disciplina, gravedad y esfuerzo estimado.",
+          "en": "Close with a roadmap ordered by effort and not only by severity, and with a register where every finding carries a code, a discipline, a severity and an estimated effort."
+        },
+        "porque": {
+          "es": "Una lista de veintisiete problemas ordenada por gravedad paraliza a un equipo pequeño: todo parece urgente y nada se empieza. Ordenada por esfuerzo aparece lo que de verdad importa, que cuatro de los ocho fallos críticos son de esfuerzo bajo y que un único cambio en el sistema de color arregla tres de ellos a la vez. El valor de una auditoría no está en encontrar cosas, está en que alguien pueda empezar el lunes.",
+          "en": "A list of twenty-seven problems ordered by severity paralyses a small team: everything looks urgent and nothing gets started. Ordered by effort, what actually matters surfaces — that four of the eight critical failures are low effort, and that a single change to the colour system fixes three of them at once. The value of an audit is not in finding things, it is in someone being able to start on Monday."
+        }
+      }
+    ],
+    "resultado": {
+      "es": "Un informe de siete partes más anexo sobre veinte pantallas: seis con fallos críticos, nueve con moderados y cinco con leves. De las diez heurísticas de Nielsen, la aplicación aprueba una, cumple seis parcialmente y suspende tres —prevención de errores, recuperación de errores y ayuda—. Hoy no alcanza el nivel AA de las WCAG. Los veintisiete hallazgos van codificados, clasificados por disciplina y gravedad y estimados en esfuerzo, con su propuesta al lado. Y por encima de todos ellos, tres decisiones concentran casi todo el beneficio: reordenar el recorrido de catorce pasos a nueve moviendo el registro detrás del resultado, dar la primera sesión completa antes de cobrar y prometer solo lo que ya existe, y un único cambio en el sistema de color que resuelve de una vez los tres fallos críticos de interfaz.",
+      "en": "A seven-part report plus an appendix covering twenty screens: six with critical failures, nine with moderate ones and five with minor ones. Of Nielsen’s ten heuristics the app passes one, partly meets six and fails three — error prevention, error recovery and help. It does not currently reach WCAG level AA. The twenty-seven findings are coded, classified by discipline and severity, estimated for effort, each with its proposal alongside. And above all of them, three decisions concentrate almost all the benefit: reordering the journey from fourteen steps to nine by moving registration behind the result, giving the first complete session before charging and promising only what already exists, and a single change to the colour system that resolves all three critical interface failures at once."
+    },
+    "links": [],
+    "featured": false,
+    "definicion": {
+      "es": "Evaluación heurística experta de una aplicación de fisioterapia en beta, contra las diez heurísticas de Nielsen y el nivel AA de las WCAG 2.2, con las medidas tomadas sobre la app en vivo y una lectura de su código. Veinte pantallas, veintisiete hallazgos codificados y una hoja de ruta ordenada por esfuerzo, no por gravedad, para que un equipo pequeño pueda empezar por algo.",
+      "en": "An expert heuristic evaluation of a physiotherapy app in beta, against Nielsen’s ten heuristics and WCAG 2.2 level AA, with measurements taken on the live build and a reading of its code. Twenty screens, twenty-seven coded findings and a roadmap ordered by effort rather than severity, so a small team can start somewhere."
+    },
+    "imagenes": []
+  },
+  {
     "slug": "corrupcion",
     "title": {
       "es": "Corrupción en la Democracia Española",
@@ -195,6 +407,10 @@ module.exports = [
     "category": {
       "es": "Visualización de Datos",
       "en": "Data Visualisation"
+    },
+    "rol": {
+      "es": "Proyecto propio, de principio a fin: investigación y tratamiento de las fuentes, diseño del sistema gráfico, desarrollo y publicación.",
+      "en": "A project of my own, end to end: research and handling of the sources, design of the graphic system, development and publication."
     },
     "summary": {
       "es": "Traducir sentencias del Supremo, autos de la Audiencia Nacional e informes del Tribunal de Cuentas a un gráfico que se lee de un vistazo.",
@@ -287,6 +503,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección del diseño de producto de las cinco tiendas y del sistema compartido, trabajando con los equipos de cada cabecera, con negocio y con desarrollo en tres mercados.",
+      "en": "Product design lead across the five stores and the shared system, working with each title’s team, with the business side and with engineering in three markets."
+    },
     "summary": {
       "es": "Una tienda legacy imposible de migrar, un checkout de siete pasos y cinco marcas que no podían parecer la misma.",
       "en": "A legacy store impossible to migrate, a seven-step checkout and five brands that could not look like the same one."
@@ -370,6 +590,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño del microsite, incluida la marca propia del podcast dentro del paraguas de la cabecera.",
+      "en": "UX/UI direction and design of the microsite, including the podcast’s own brand inside the magazine’s umbrella."
+    },
     "summary": {
       "es": "Un podcast patrocinado que necesitaba marca propia dentro del paraguas de la revista, con once temporadas que ordenar.",
       "en": "A sponsored podcast that needed a brand of its own under the magazine’s umbrella, with eleven seasons to organise."
@@ -440,6 +664,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño de la experiencia completa del evento, de la definición del formato a la entrega a desarrollo.",
+      "en": "UX/UI direction and design of the whole event experience, from defining the format to handover to engineering."
+    },
     "summary": {
       "es": "La pandemia dejó sin calle a uno de los eventos de moda del año; había que reinventarlo sin convertirlo en una retransmisión.",
       "en": "The pandemic left one of the fashion events of the year without a street; it had to be reinvented without turning it into a broadcast."
@@ -499,6 +727,10 @@ module.exports = [
     "category": {
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
+    },
+    "rol": {
+      "es": "Dirección de arte y diseño de la pieza, incluida la dirección de la ilustración y la ordenación del contenido.",
+      "en": "Art direction and design of the piece, including directing the illustration and structuring the content."
     },
     "summary": {
       "es": "Que el contenido de marca se lea como una guía que apetece explorar y no como publicidad, con más de cincuenta sitios que ordenar.",
@@ -570,6 +802,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño del microsite, incluido el sistema de registro pensado para reutilizarse en ediciones posteriores.",
+      "en": "UX/UI direction and design of the microsite, including the registration system, built to be reused in later editions."
+    },
     "summary": {
       "es": "Cuatro días de agenda, cuatro temáticas y un registro que tenía que sobrevivir a las ediciones siguientes.",
       "en": "Four days of programme, four themes and a registration flow that had to survive the editions to come."
@@ -640,6 +876,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño del microsite, del concepto visual a la entrega.",
+      "en": "UX/UI direction and design of the microsite, from the visual concept to handover."
+    },
     "summary": {
       "es": "Transmitir alta gama sin poner nada entre el visitante y el botón de play.",
       "en": "A premium feel conveyed without anything standing between the visitor and the play button."
@@ -709,6 +949,10 @@ module.exports = [
     "category": {
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
+    },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño del microsite, incluido el flujo de venta de entradas de las tres sesiones.",
+      "en": "UX/UI direction and design of the microsite, including the ticketing flow for the three sessions."
     },
     "summary": {
       "es": "Vender entradas de tres sesiones y gestionar dos fechas desde un único sitio.",
@@ -784,6 +1028,10 @@ module.exports = [
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
     },
+    "rol": {
+      "es": "Dirección de UX/UI y rediseño de la sección, del árbol de contenidos y el sistema de comparación a la entrega a desarrollo.",
+      "en": "UX/UI direction and redesign of the section, from the content tree and the comparison system through to handover."
+    },
     "summary": {
       "es": "Un catálogo formativo de cuatro tipos distintos que había que poder comparar en el móvil.",
       "en": "A teaching catalogue of four different kinds that had to be comparable on a phone."
@@ -853,6 +1101,10 @@ module.exports = [
     "category": {
       "es": "UX/UI Digital",
       "en": "Digital UX/UI"
+    },
+    "rol": {
+      "es": "Dirección de UX/UI y diseño de los dos microsites, resueltos sobre una misma mecánica con dos personalidades distintas.",
+      "en": "UX/UI direction and design of both microsites, resolved on one shared mechanic with two distinct personalities."
     },
     "summary": {
       "es": "La misma mecánica de fidelización para dos públicos que no se parecen en nada.",
@@ -924,6 +1176,10 @@ module.exports = [
       "es": "Publicidad",
       "en": "Advertising"
     },
+    "rol": {
+      "es": "Dirección de arte y diseño de la publicación especial, impresa y digital.",
+      "en": "Art direction and design of the special publication, in print and digital."
+    },
     "summary": {
       "es": "Que un acuerdo con un banco no acabe pareciendo un folleto corporativo.",
       "en": "Keeping an agreement with a bank from ending up looking like a corporate brochure."
@@ -983,6 +1239,10 @@ module.exports = [
     "category": {
       "es": "Editorial",
       "en": "Editorial"
+    },
+    "rol": {
+      "es": "Jefe de Diseño. Dirección de arte y maquetación de la revista semanal, retoque y tratamiento de imagen de las producciones propias, y dirección del salto al digital.",
+      "en": "Head of Design. Art direction and layout of the weekly magazine, retouching and image treatment on in-house productions, and leading the move to digital."
     },
     "summary": {
       "es": "Sostener más de doscientos números a ritmo semanal y dirigir a la vez el salto al digital.",
